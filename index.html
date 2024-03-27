@@ -16,7 +16,7 @@
 <script>
     const staffContainer=document.querySelector(".staff-container");
     const newStaffTxt=document.querySelector("#new-staff-txt");
-    const addBtn =document.querySelector("#add.btn");
+    const addBtn =document.querySelector("#add-btn");;
 
 
 let hogwartsStaff;
@@ -83,6 +83,19 @@ deleteBtn.addEventListener("click", function(){
         showAllStaff();
     }
     
+//Create
+
+function addStaffMember(){
+    hogwartsStaff.unshift({
+        name:newStaffTxt.value,
+    });
+
+    console.log(hogwartsStaff)
+    showAllStaff();
+}
+
+
+addBtn.onclick =addStaffMember;
 
 
 
