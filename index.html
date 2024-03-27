@@ -54,9 +54,13 @@ function showAllStaff(){
         const staffCard= document.createElement("div");
 
 
-//slett
+//Slette
+
+
 
 const deleteBtn= document.createElement("button");
+deleteBtn.innerHTML = "Slett ansatt";
+deleteBtn.style.backgroundColor ="red";
 
         staffCard.innerHTML =`<img src="${staffMember.image}" style="width:100px" /<h3>${staffMember.name} </h3>`
         console.log(staffMember.name);
