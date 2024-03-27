@@ -7,6 +7,66 @@
 </head>
 <body>
     <h1>Harry Potter Ansatte</h1>
-    <h2>Heisan sveisann</h2>
+    <input type="text" placeholder="Navn på ny lærer..." id="new-staff-txt" />
+    <input type="button" value="Legg til lærer!" id="add-btn" />
+    <div class="staff-container"></div>
+    
 </body>
+
+<script>
+    const staffContainer=document.querySelector(".staff-container");
+    const newStaffTxt=document.querySelector("#new-staff-txt");
+    const addBtn =document.querySelector("#add.btn");
+
+
+let hogwartsStaff;
+
+//READ
+
+async function fetchStaff(){
+  
+    const hogwartsStaffRequest = await fetch("https://harry-potter-api-3a23c827ee69.herokuapp.com/api/characters/students");
+
+    let result = await hogwartsStaffRequest.json();
+
+    return result;
+
+}
+
+
+
+async function fetchAndShowStaff(){
+    try{
+        hogwartsStaff = await fetchStaff();
+        console.log("inne i fetchAndShowStaff" ,hogwartsStaff);
+        showAllStaff();
+    }catch{
+        console.error("Opps klarte ikke laste ned Hogwarts Staff", error);
+    }
+}
+
+fetchAndShowStaff();
+
+//Read for å vise frem alle ansatte
+
+function showAllStaff(){
+    hogwartsStaff.forEach((staffMember,index)=>{
+        const staffCard= document.createElement("div");
+
+
+//slett
+
+const deleteBtn= document.createElement("button");
+
+        staffCard.innerHTML =`<img src="${staffMember.image}" style="width:100px" /<h3>${staffMember.name} </h3>`
+        console.log(staffMember.name);
+        staffContainer.append(staffCard);
+    });
+        
+    };
+    
+
+
+
+</script>
 </html>
