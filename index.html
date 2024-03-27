@@ -66,11 +66,22 @@ deleteBtn.style.backgroundColor ="red";
 deleteBtn.addEventListener("click", function(){
     deleteStaffMemmber(index);
 });
+//Edit
+const nameInput = document.createElement("Input");
+nameInput.type="text";
+nameInput.placeholder="Skriv inn navn på ansatt..."
+nameInput.id =`nameInput-${index}`;
+
+const editBtn =document.createElement("button");
+editBtn.innerHTML="Rediger ansatt";
+editBtn.addEventListener("click",function(){
+    editStaffMember(index);
+})
 
 
         staffCard.innerHTML =`<img src="${staffMember.image}" style="width:100px" /<h3>${staffMember.name} </h3>`
         console.log(staffMember.name);
-        staffCard.append(deleteBtn);
+        staffCard.append(deleteBtn,nameInput,editBtn);
         staffContainer.append(staffCard);
     });
         
@@ -96,6 +107,17 @@ function addStaffMember(){
 
 
 addBtn.onclick =addStaffMember;
+
+//Edit
+function editStaffMember(index){
+    const newStaffName = document.getElementById(`nameInput-${index}`).value;
+
+    hogwartsStaff[index].name = newStaffName;
+
+    showAllStaff();
+
+
+}
 
 
 
